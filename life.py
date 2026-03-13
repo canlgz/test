@@ -44,7 +44,10 @@ PRESETS = {
 
 
 def get_terminal_size():
-    size = os.get_terminal_size()
+    try:
+        size = os.get_terminal_size()
+    except OSError:
+        return 20, 40
     # each cell is 2 chars wide
     cols = size.columns // 2
     rows = size.lines - 5  # leave room for header
